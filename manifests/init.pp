@@ -12,25 +12,25 @@
 # @param avoid_daily_autocommits
 # @param avoid_special_file_warning
 # @param bzr_commit_options
-# @param conf_dir
+# @param conf_dir Top-level configuration directory, usually `/etc/etckeeper`.
 # @param darcs_commit_options
 # @param git_commit_options
 # @param hg_commit_options
 # @param highlevel_package_manager
 # @param lowlevel_package_manager
-# @param package_name
+# @param package_name The name of the package.
 # @param push_remotes
 # @param vcs
-# @param vcs_packages
+# @param vcs_packages Hash of VCS to the package that provides it.
 class etckeeper (
   Optional[Boolean]                    $avoid_commit_before_install = undef,
   Optional[Boolean]                    $avoid_daily_autocommits     = undef,
   Optional[Boolean]                    $avoid_special_file_warning  = undef,
-  String                               $bzr_commit_options          = $::etckeeper::params::bzr_commit_options,
+  Optional[String]                     $bzr_commit_options          = $::etckeeper::params::bzr_commit_options,
   Stdlib::Absolutepath                 $conf_dir                    = $::etckeeper::params::conf_dir,
-  String                               $darcs_commit_options        = $::etckeeper::params::darcs_commit_options,
-  String                               $git_commit_options          = $::etckeeper::params::git_commit_options,
-  String                               $hg_commit_options           = $::etckeeper::params::hg_commit_options,
+  Optional[String]                     $darcs_commit_options        = $::etckeeper::params::darcs_commit_options,
+  Optional[String]                     $git_commit_options          = $::etckeeper::params::git_commit_options,
+  Optional[String]                     $hg_commit_options           = $::etckeeper::params::hg_commit_options,
   Etckeeper::PackageManager::HighLevel $highlevel_package_manager   = $::etckeeper::params::highlevel_package_manager,
   Etckeeper::PackageManager::LowLevel  $lowlevel_package_manager    = $::etckeeper::params::lowlevel_package_manager,
   String                               $package_name                = $::etckeeper::params::package_name,

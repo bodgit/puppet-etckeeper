@@ -1,11 +1,11 @@
 # @!visibility private
 class etckeeper::params {
 
-  $bzr_commit_options   = '' # lint:ignore:empty_string_assignment
+  $bzr_commit_options   = undef
   $conf_dir             = '/etc/etckeeper'
   $darcs_commit_options = '-a'
-  $git_commit_options   = '' # lint:ignore:empty_string_assignment
-  $hg_commit_options    = '' # lint:ignore:empty_string_assignment
+  $git_commit_options   = undef
+  $hg_commit_options    = undef
   $package_name         = 'etckeeper'
   $vcs_packages         = {
     'bzr'   => 'bzr',
