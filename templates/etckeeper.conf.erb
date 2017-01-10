@@ -1,0 +1,17 @@
+# !!! Managed by Puppet !!!
+
+VCS="<%= @vcs %>"
+
+BZR_COMMIT_OPTIONS="<%= @bzr_commit_options %>"
+DARCS_COMMIT_OPTIONS="<%= @darcs_commit_options %>"
+GIT_COMMIT_OPTIONS="<%= @git_commit_options %>"
+HG_COMMIT_OPTIONS="<%= @hg_commit_options %>"
+
+<%= (@avoid_daily_autocommits.nil? or @avoid_daily_autocommits) ? '#' : '' %>AVOID_DAILY_AUTOCOMMITS=1
+<%= (@avoid_special_file_warning.nil? or @avoid_special_file_warning) ? '#' : '' %>AVOID_SPECIAL_FILE_WARNING=1
+<%= (@avoid_commit_before_install.nil? or @avoid_commit_before_install) ? '#' : '' %>AVOID_COMMIT_BEFORE_INSTALL=1
+
+HIGHLEVEL_PACKAGE_MANAGER=<%= @highlevel_package_manager %>
+LOWLEVEL_PACKAGE_MANAGER=<%= @lowlevel_package_manager %>
+
+PUSH_REMOTE="<%= @push_remotes ? @push_remotes.join(' ') : '' %>"
