@@ -8,7 +8,7 @@ group :development, :test do
   gem 'rspec-puppet', '>= 2.2.0',                         :require => false
   gem 'puppetlabs_spec_helper',                           :require => false
   gem 'metadata-json-lint',                               :require => false
-  gem 'puppet-lint', '>= 2.0.0',                          :require => false
+  gem 'puppet-lint', '>= 2.1.0',                          :require => false
   gem 'puppet-lint-unquoted_string-check',                :require => false
   gem 'puppet-lint-empty_string-check',                   :require => false
   gem 'puppet-lint-spaceship_operator_without_tag-check', :require => false
