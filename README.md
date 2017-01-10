@@ -66,7 +66,7 @@ class { '::etckeeper':
 The reference documentation is generated with
 [puppet-strings](https://github.com/puppetlabs/puppet-strings) and the latest
 version of the documentation is hosted at
-[http://bodgit.github.io/puppet-etckeeper/](http://bodgit.github.io/puppet-etckeeper/).
+[https://bodgit.github.io/puppet-etckeeper/](https://bodgit.github.io/puppet-etckeeper/).
 
 ## Limitations
 
