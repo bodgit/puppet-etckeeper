@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-etckeeper">etckeeper</h1>
+
+<p>Tested with Travis CI</p>
+
+<p><a href="https://travis-ci.org/bodgit/puppet-etckeeper"><img
+src="https://travis-ci.org/bodgit/puppet-etckeeper.svg?branch=master"></a>
+<a
+href="https://coveralls.io/github/bodgit/puppet-etckeeper?branch=master"><img
+src="https://coveralls.io/repos/bodgit/puppet-etckeeper/badge.svg?branch=master&service=github"></a>
+<a href="https://forge.puppetlabs.com/bodgit/etckeeper"><img
+src="http://img.shields.io/puppetforge/v/bodgit/etckeeper.svg"></a> <a
+href="https://gemnasium.com/bodgit/puppet-etckeeper"><img
+src="https://gemnasium.com/bodgit/puppet-etckeeper.svg"></a></p>
+
+<h4 id="label-Table+of+Contents">Table of Contents</h4>
+<ol><li>
+<p><a href="#description">Description</a></p>
+</li><li>
+<p><a href="#setup">Setup - The basics of getting started with etckeeper</a></p>
+<ul><li>
+<p><a href="#what-etckeeper-affects">What etckeeper affects</a></p>
+</li><li>
+<p><a href="#setup-requirements">Setup requirements</a></p>
+</li><li>
+<p><a href="#beginning-with-etckeeper">Beginning with etckeeper</a></p>
+</li></ul>
+</li><li>
+<p><a href="#usage">Usage - Configuration options and additional
+functionality</a></p>
+</li><li>
+<p><a href="#reference">Reference - An under-the-hood peek at what the module
+is doing and how</a></p>
+</li><li>
+<p><a href="#limitations">Limitations - OS compatibility, etc.</a></p>
+</li><li>
+<p><a href="#development">Development - Guide for contributing to the
+module</a></p>
+</li></ol>
+
+<h2 id="label-Description">Description</h2>
+
+<p>This module ensures that etckeeper is set up and configured to keep the
+<code>/etc</code> directory under version control.</p>
+
+<p>RHEL/CentOS, Ubuntu and Debian are supported using Puppet 4.4.0 or later.</p>
+
+<h2 id="label-Setup">Setup</h2>
+
+<h3 id="label-What+etckeeper+affects">What etckeeper affects</h3>
+
+<p>This module will remove any VCS state directories under <code>/etc</code>
+for any supported VCS except the one chosen to be used. So for example, if
+you&#39;re using git, any directories matching <code>/etc/.bzr</code>,
+<code>/etc/.hg</code> and <code>/etc/_darcs</code> will be removed. This
+also means that if you change VCS you will lose any previous commits.</p>
+
+<h3 id="label-Setup+Requirements">Setup Requirements</h3>
+
+<p>On RHEL/CentOS platforms you will need to have access to the EPEL
+repository by using <a
+href="https://forge.puppet.com/stahnma/epel">stahnma/epel</a> or by other
+means.</p>
+
+<h3 id="label-Beginning+with+etckeeper">Beginning with etckeeper</h3>
+
+<p>In the very simplest case, you can just include the following:</p>
+
+<pre class="code ruby"><code class="ruby">include ::etckeeper</code></pre>
+
+<h2 id="label-Usage">Usage</h2>
+
+<p>For example to configure etckeeper to use a specific VCS instead of going
+with the default:</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;::etckeeper&#39;:
+  vcs =&gt; &#39;bzr&#39;,
+}</code></pre>
+
+<h2 id="label-Reference">Reference</h2>
+
+<p>The reference documentation is generated with <a
+href="https://github.com/puppetlabs/puppet-strings">puppet-strings</a> and
+the latest version of the documentation is hosted at <a
+href="http://bodgit.github.io/puppet-etckeeper/">bodgit.github.io/puppet-etckeeper/</a>.</p>
+
+<h2 id="label-Limitations">Limitations</h2>
+
+<p>This module has been built on and tested against Puppet 4.4.0 and higher.</p>
+
+<p>The module has been tested on:</p>
+<ul><li>
+<p>RedHat Enterprise Linux 6/7</p>
+</li><li>
+<p>Ubuntu 14.04/16.04</p>
+</li><li>
+<p>Debian 7/8</p>
+</li></ul>
+
+<h2 id="label-Development">Development</h2>
+
+<p>The module has both <a href="http://rspec-puppet.com">rspec-puppet</a> and
+<a href="https://github.com/puppetlabs/beaker-rspec">beaker-rspec</a>
+tests. Run them with:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec rake test
+$ PUPPET_INSTALL_TYPE=agent PUPPET_INSTALL_VERSION=x.y.z bundle exec rake beaker:&lt;nodeset&gt;</code></pre>
+
+<p>Please log issues or pull requests at <a
+href="https://github.com/bodgit/puppet-etckeeper">github</a>.</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Tue Jan 10 21:21:06 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.6 (ruby-2.2.5).
+</div>
+
+    </div>
+  </body>
+</html>
