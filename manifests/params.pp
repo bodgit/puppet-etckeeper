@@ -1,11 +1,13 @@
+
 # @!visibility private
 class etckeeper::params {
 
   $bzr_commit_options   = undef
   $conf_dir             = '/etc/etckeeper'
   $darcs_commit_options = '-a'
+  $git_user_name        = 'etckeeper'
+  $git_user_email       = 'root@localhost'
   $git_commit_options   = undef
-  $hg_commit_options    = undef
   $package_name         = 'etckeeper'
   $vcs_packages         = {
     'bzr'   => 'bzr',
