@@ -7,6 +7,7 @@ class etckeeper::params {
   $git_commit_options   = undef
   $hg_commit_options    = undef
   $package_name         = 'etckeeper'
+  $install_vcs          = true
   $vcs_packages         = {
     'bzr'   => 'bzr',
     'darcs' => 'darcs',
