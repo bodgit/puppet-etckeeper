@@ -26,6 +26,7 @@ class etckeeper (
   Optional[Boolean]                    $avoid_commit_before_install = undef,
   Optional[Boolean]                    $avoid_daily_autocommits     = undef,
   Optional[Boolean]                    $avoid_special_file_warning  = undef,
+  Optional[Boolean]                    $install_vcs                 = $::etckeeper::params::install_vcs,
   Optional[String]                     $bzr_commit_options          = $::etckeeper::params::bzr_commit_options,
   Stdlib::Absolutepath                 $conf_dir                    = $::etckeeper::params::conf_dir,
   Optional[String]                     $darcs_commit_options        = $::etckeeper::params::darcs_commit_options,
