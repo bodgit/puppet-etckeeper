@@ -1,3 +1,11 @@
+## Release 1.1.0
+
+### Summary
+
+#### Features
+
+- Add option for not managing the individual VCS packages.
+
 ## Release 1.0.0
 
 ### Summary
