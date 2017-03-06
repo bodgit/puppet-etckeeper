@@ -245,6 +245,19 @@
   
     <li>
       
+        <span class='name'>manage_vcs_package</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>package_name</span>
       
       
@@ -315,7 +328,6 @@
         <pre class="lines">
 
 
-25
 26
 27
 28
@@ -336,10 +348,12 @@
 43
 44
 45
-46</pre>
+46
+47
+48</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 25</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 26</span>
 
 class etckeeper (
   Optional[Boolean]                    $avoid_commit_before_install = undef,
@@ -352,6 +366,7 @@ class etckeeper (
   Optional[String]                     $hg_commit_options           = $::etckeeper::params::hg_commit_options,
   Etckeeper::PackageManager::HighLevel $highlevel_package_manager   = $::etckeeper::params::highlevel_package_manager,
   Etckeeper::PackageManager::LowLevel  $lowlevel_package_manager    = $::etckeeper::params::lowlevel_package_manager,
+  Boolean                              $manage_vcs_package          = true,
   String                               $package_name                = $::etckeeper::params::package_name,
   Optional[Array[String, 1]]           $push_remotes                = undef,
   Etckeeper::VCS                       $vcs                         = $::etckeeper::params::vcs,
@@ -370,7 +385,7 @@ class etckeeper (
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 10 21:31:20 2017 by
+  Generated on Mon Mar  6 07:54:12 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.6 (ruby-2.2.5).
 </div>
