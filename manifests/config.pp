@@ -8,6 +8,8 @@ class etckeeper::config {
   $conf_dir                    = $::etckeeper::conf_dir
   $darcs_commit_options        = $::etckeeper::darcs_commit_options
   $git_commit_options          = $::etckeeper::git_commit_options
+  $git_user_email              = $::etckeeper::git_user_email
+  $git_user_name               = $::etckeeper::git_user_name
   $hg_commit_options           = $::etckeeper::hg_commit_options
   $highlevel_package_manager   = $::etckeeper::highlevel_package_manager
   $lowlevel_package_manager    = $::etckeeper::lowlevel_package_manager
@@ -47,9 +49,18 @@ class etckeeper::config {
     }
   }
 
+  if ($vcs == 'git') and ($::osfamily == 'Debian') {
+    $init_command = "etckeeper init;git config --local user.name ${git_user_name};git config --local user.email ${git_user_email};etckeeper commit 'initial commit'"
+  }
+  else {
+    $init_command = 'etckeeper init'
+  }
+
   exec { 'etckeeper init':
+    command => $init_command,
     creates => $vcs_to_directory[$vcs],
     path    => $::path,
     require => File["${conf_dir}/etckeeper.conf"],
   }
+
 }
