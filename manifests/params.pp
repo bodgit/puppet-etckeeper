@@ -8,6 +8,7 @@ class etckeeper::params {
   $git_user_name        = 'etckeeper'
   $git_user_email       = 'root@localhost'
   $git_commit_options   = undef
+  $hg_commit_options    = undef
   $package_name         = 'etckeeper'
   $vcs_packages         = {
     'bzr'   => 'bzr',
