@@ -49,8 +49,8 @@ class etckeeper::config {
     }
   }
 
-  if $vcs == 'git' {
-    $init_command = "etckeeper init;git config --local user.name ${git_user_name};git config --local user.email ${git_user_email}"
+  if ($vcs == 'git') and ($::osfamily == 'Debian') {
+    $init_command = "etckeeper init;git config --local user.name ${git_user_name};git config --local user.email ${git_user_email};etckeeper commit 'initial commit'"
   }
   else {
     $init_command = 'etckeeper init'

@@ -6,7 +6,7 @@ class etckeeper::params {
   $conf_dir             = '/etc/etckeeper'
   $darcs_commit_options = '-a'
   $git_user_name        = 'etckeeper'
-  $git_user_email       = 'root@localhost'
+  $git_user_email       = "root@${fqdn}"
   $git_commit_options   = undef
   $hg_commit_options    = undef
   $package_name         = 'etckeeper'

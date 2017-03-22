@@ -18,6 +18,7 @@
 # @param hg_commit_options
 # @param highlevel_package_manager
 # @param lowlevel_package_manager
+# @param manage_vcs_package
 # @param package_name The name of the package.
 # @param push_remotes
 # @param vcs
@@ -33,6 +34,7 @@ class etckeeper (
   Optional[String]                     $hg_commit_options           = $::etckeeper::params::hg_commit_options,
   Etckeeper::PackageManager::HighLevel $highlevel_package_manager   = $::etckeeper::params::highlevel_package_manager,
   Etckeeper::PackageManager::LowLevel  $lowlevel_package_manager    = $::etckeeper::params::lowlevel_package_manager,
+  Boolean                              $manage_vcs_package          = true,
   String                               $package_name                = $::etckeeper::params::package_name,
   Optional[Array[String, 1]]           $push_remotes                = undef,
   Etckeeper::VCS                       $vcs                         = $::etckeeper::params::vcs,

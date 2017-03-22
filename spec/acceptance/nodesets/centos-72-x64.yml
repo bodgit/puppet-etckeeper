@@ -7,4 +7,4 @@ HOSTS:
     box_url: https://vagrantcloud.com/puppetlabs/boxes/centos-7.2-64-nocm
     hypervisor: vagrant
 CONFIG:
-  type: aio
+  type: foss
