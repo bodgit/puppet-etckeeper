@@ -23,6 +23,8 @@
 # @param push_remotes
 # @param vcs
 # @param vcs_packages Hash of VCS to the package that provides it.
+#
+# @since 1.0.0
 class etckeeper (
   Optional[Boolean]                    $avoid_commit_before_install = undef,
   Optional[Boolean]                    $avoid_daily_autocommits     = undef,
@@ -38,7 +40,7 @@ class etckeeper (
   String                               $package_name                = $::etckeeper::params::package_name,
   Optional[Array[String, 1]]           $push_remotes                = undef,
   Etckeeper::VCS                       $vcs                         = $::etckeeper::params::vcs,
-  Hash[String, String]                 $vcs_packages                = $::etckeeper::params::vcs_packages,
+  Hash[Etckeeper::VCS, String]         $vcs_packages                = $::etckeeper::params::vcs_packages,
 ) inherits ::etckeeper::params {
 
   contain ::etckeeper::install
