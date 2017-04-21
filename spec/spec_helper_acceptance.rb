@@ -12,8 +12,9 @@ RSpec.configure do |c|
   c.before :suite do
     hosts.each do |host|
       puppet_module_install(:source => proj_root, :module_name => 'etckeeper')
-      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
-      on host, puppet('module', 'install', 'stahnma-epel'),      { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'puppetlabs-stdlib'),  { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'puppetlabs-inifile'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'stahnma-epel'),       { :acceptable_exit_codes => [0,1] }
     end
   end
 end

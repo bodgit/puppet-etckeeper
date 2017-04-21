@@ -8,6 +8,13 @@
 #     vcs => 'bzr',
 #   }
 #
+# @example Forcing the user name & email for commits
+#   class { '::etckeeper':
+#     vcs            => 'git',
+#     vcs_user_name  => 'Alice',
+#     vcs_user_email => 'alice@example.com',
+#   }
+#
 # @param avoid_commit_before_install
 # @param avoid_daily_autocommits
 # @param avoid_special_file_warning
@@ -23,6 +30,8 @@
 # @param push_remotes
 # @param vcs
 # @param vcs_packages Hash of VCS to the package that provides it.
+# @param vcs_user_email
+# @param vcs_user_name
 #
 # @since 1.0.0
 class etckeeper (
@@ -41,6 +50,8 @@ class etckeeper (
   Optional[Array[String, 1]]           $push_remotes                = undef,
   Etckeeper::VCS                       $vcs                         = $::etckeeper::params::vcs,
   Hash[Etckeeper::VCS, String]         $vcs_packages                = $::etckeeper::params::vcs_packages,
+  Optional[String[1]]                  $vcs_user_email              = undef,
+  Optional[String[1]]                  $vcs_user_name               = undef,
 ) inherits ::etckeeper::params {
 
   contain ::etckeeper::install

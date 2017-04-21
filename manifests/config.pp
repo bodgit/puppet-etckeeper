@@ -13,6 +13,8 @@ class etckeeper::config {
   $lowlevel_package_manager    = $::etckeeper::lowlevel_package_manager
   $push_remotes                = $::etckeeper::push_remotes
   $vcs                         = $::etckeeper::vcs
+  $vcs_user_email              = $::etckeeper::vcs_user_email
+  $vcs_user_name               = $::etckeeper::vcs_user_name
 
   file { $conf_dir:
     ensure => directory,
@@ -51,5 +53,38 @@ class etckeeper::config {
     creates => $vcs_to_directory[$vcs],
     path    => $::path,
     require => File["${conf_dir}/etckeeper.conf"],
+  }
+
+  case $vcs {
+    'git': {
+      file { '/etc/.git/config':
+        ensure  => file,
+        owner   => 0,
+        group   => 0,
+        mode    => '0644',
+        require => Exec['etckeeper init'],
+      }
+
+      if $vcs_user_name and $vcs_user_email {
+        ini_setting { '/etc/.git/config user.name':
+          ensure  => present,
+          path    => '/etc/.git/config',
+          section => 'user',
+          setting => 'name',
+          value   => $vcs_user_name,
+        }
+
+        ini_setting { '/etc/.git/config user.email':
+          ensure  => present,
+          path    => '/etc/.git/config',
+          section => 'user',
+          setting => 'email',
+          value   => $vcs_user_email,
+        }
+      }
+    }
+    default: {
+      # noop
+    }
   }
 }

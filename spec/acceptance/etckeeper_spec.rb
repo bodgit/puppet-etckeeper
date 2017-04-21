@@ -5,7 +5,10 @@ describe 'etckeeper' do
   it 'should work with no errors' do
 
     pp = <<-EOS
-      include ::etckeeper
+      class { '::etckeeper':
+        vcs_user_name  => 'Vagrant User',
+        vcs_user_email => 'vagrant@example.com',
+      }
 
       if $::osfamily == 'RedHat' {
         include ::epel
@@ -57,12 +60,13 @@ describe 'etckeeper' do
     it { should be_mode 700 }
   end
 
-  describe command('git config --global user.email "vagrant@example.com"'), :unless => (fact('operatingsystem').eql?('Ubuntu') and fact('operatingsystemrelease').eql?('14.04')) do
-    its(:exit_status) { should eq 0 }
-  end
-
-  describe command('git config --global user.name "Vagrant User"'), :unless => (fact('operatingsystem').eql?('Ubuntu') and fact('operatingsystemrelease').eql?('14.04')) do
-    its(:exit_status) { should eq 0 }
+  describe file('/etc/.git/config'), :unless => (fact('operatingsystem').eql?('Ubuntu') and fact('operatingsystemrelease').eql?('14.04')) do
+    it { should be_file }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'root' }
+    it { should be_mode 644 }
+    its(:content) { should match /^ \s* name \s* = \s* Vagrant \s User $/x }
+    its(:content) { should match /^ \s* email \s* = \s* vagrant@example\.com $/x }
   end
 
   describe command('etckeeper commit "Initial commit"') do
