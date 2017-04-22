@@ -104,6 +104,17 @@
   vcs =&gt; &#39;bzr&#39;,
 }</code></pre>
     
+      
+        <p class="example_title"><div class='inline'>
+<p>Forcing the user name &amp; email for commits</p>
+</div></p>
+      
+      <pre class="example code"><code>class { &#39;::etckeeper&#39;:
+  vcs            =&gt; &#39;git&#39;,
+  vcs_user_name  =&gt; &#39;Alice&#39;,
+  vcs_user_email =&gt; &#39;alice@example.com&#39;,
+}</code></pre>
+    
   </div>
 <p class="tag_title">Parameters:</p>
 <ul class="param">
@@ -305,7 +316,7 @@
         <span class='name'>vcs_packages</span>
       
       
-        <span class='type'>(<tt>Hash[String, String]</tt>)</span>
+        <span class='type'>(<tt>Hash[Etckeeper::VCS, String]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::etckeeper::params::vcs_packages</tt>)</em>
@@ -318,8 +329,57 @@
       
     </li>
   
+    <li>
+      
+        <span class='name'>vcs_user_email</span>
+      
+      
+        <span class='type'>(<tt>Optional[String[1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>vcs_user_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String[1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
 </ul>
 
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../puppet_defined_types/etckeeper_3A_3Aignore.html" title="puppet_defined_types::etckeeper::ignore (puppet_defined_type)">::etckeeper::ignore</a></span></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><div class="method_details_list">
   <table class="source_code">
@@ -328,19 +388,6 @@
         <pre class="lines">
 
 
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
 39
 40
 41
@@ -350,10 +397,25 @@
 45
 46
 47
-48</pre>
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 26</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 39</span>
 
 class etckeeper (
   Optional[Boolean]                    $avoid_commit_before_install = undef,
@@ -370,7 +432,9 @@ class etckeeper (
   String                               $package_name                = $::etckeeper::params::package_name,
   Optional[Array[String, 1]]           $push_remotes                = undef,
   Etckeeper::VCS                       $vcs                         = $::etckeeper::params::vcs,
-  Hash[String, String]                 $vcs_packages                = $::etckeeper::params::vcs_packages,
+  Hash[Etckeeper::VCS, String]         $vcs_packages                = $::etckeeper::params::vcs_packages,
+  Optional[String[1]]                  $vcs_user_email              = undef,
+  Optional[String[1]]                  $vcs_user_name               = undef,
 ) inherits ::etckeeper::params {
 
   contain ::etckeeper::install
@@ -385,7 +449,7 @@ class etckeeper (
 </div>
 
       <div id="footer">
-  Generated on Mon Mar  6 07:55:49 2017 by
+  Generated on Sun Apr 23 00:15:52 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.6 (ruby-2.2.5).
 </div>
