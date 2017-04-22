@@ -33,6 +33,8 @@
 # @param vcs_user_email
 # @param vcs_user_name
 #
+# @see puppet_defined_types::etckeeper::ignore ::etckeeper::ignore
+#
 # @since 1.0.0
 class etckeeper (
   Optional[Boolean]                    $avoid_commit_before_install = undef,

@@ -25,7 +25,9 @@ describe 'etckeeper' do
         it { should contain_class('etckeeper::params') }
         it { should contain_exec('etckeeper init') }
         it { should contain_file('/etc/_darcs').with_ensure('absent') }
+        it { should contain_file('/etc/.darcsignore').with_ensure('absent') }
         it { should contain_file('/etc/.hg').with_ensure('absent') }
+        it { should contain_file('/etc/.hgignore').with_ensure('absent') }
         it { should contain_file('/etc/etckeeper') }
         it { should contain_file('/etc/etckeeper/etckeeper.conf') }
         it { should contain_package('etckeeper') }
@@ -37,12 +39,14 @@ describe 'etckeeper' do
             case facts[:operatingsystemrelease]
             when '14.04'
               it { should contain_file('/etc/.git').with_ensure('absent') }
+              it { should contain_file('/etc/.gitignore').with_ensure('absent') }
               it { should contain_package('bzr') }
               it { should_not contain_package('darcs') }
               it { should_not contain_package('git') }
               it { should_not contain_package('hg') }
             else
               it { should contain_file('/etc/.bzr').with_ensure('absent') }
+              it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
               it { should_not contain_package('bzr') }
               it { should_not contain_package('darcs') }
               it { should contain_package('git') }
@@ -50,6 +54,7 @@ describe 'etckeeper' do
             end
           else
             it { should contain_file('/etc/.bzr').with_ensure('absent') }
+            it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
             it { should_not contain_package('bzr') }
             it { should_not contain_package('darcs') }
             it { should contain_package('git') }
@@ -57,6 +62,7 @@ describe 'etckeeper' do
           end
         when 'RedHat'
           it { should contain_file('/etc/.bzr').with_ensure('absent') }
+          it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
           it { should_not contain_package('bzr') }
           it { should_not contain_package('darcs') }
           it { should contain_package('git') }
@@ -77,7 +83,9 @@ describe 'etckeeper' do
         it { should contain_class('etckeeper::params') }
         it { should contain_exec('etckeeper init') }
         it { should contain_file('/etc/_darcs').with_ensure('absent') }
+        it { should contain_file('/etc/.darcsignore').with_ensure('absent') }
         it { should contain_file('/etc/.hg').with_ensure('absent') }
+        it { should contain_file('/etc/.hgignore').with_ensure('absent') }
         it { should contain_file('/etc/etckeeper') }
         it { should contain_file('/etc/etckeeper/etckeeper.conf') }
         it { should_not contain_package('bzr') }
@@ -93,14 +101,18 @@ describe 'etckeeper' do
             case facts[:operatingsystemrelease]
             when '14.04'
               it { should contain_file('/etc/.git').with_ensure('absent') }
+              it { should contain_file('/etc/.gitignore').with_ensure('absent') }
             else
               it { should contain_file('/etc/.bzr').with_ensure('absent') }
+              it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
             end
           else
             it { should contain_file('/etc/.bzr').with_ensure('absent') }
+            it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
           end
         when 'RedHat'
           it { should contain_file('/etc/.bzr').with_ensure('absent') }
+          it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
         end
       end
 
@@ -118,7 +130,9 @@ describe 'etckeeper' do
         it { should contain_class('etckeeper::params') }
         it { should contain_exec('etckeeper init') }
         it { should contain_file('/etc/_darcs').with_ensure('absent') }
+        it { should contain_file('/etc/.darcsignore').with_ensure('absent') }
         it { should contain_file('/etc/.hg').with_ensure('absent') }
+        it { should contain_file('/etc/.hgignore').with_ensure('absent') }
         it { should contain_file('/etc/etckeeper') }
         it { should contain_file('/etc/etckeeper/etckeeper.conf') }
         it { should contain_package('etckeeper') }
@@ -130,12 +144,14 @@ describe 'etckeeper' do
             case facts[:operatingsystemrelease]
             when '14.04'
               it { should contain_file('/etc/.git').with_ensure('absent') }
+              it { should contain_file('/etc/.gitignore').with_ensure('absent') }
               it { should contain_package('bzr') }
               it { should_not contain_package('darcs') }
               it { should_not contain_package('git') }
               it { should_not contain_package('hg') }
             else
               it { should contain_file('/etc/.bzr').with_ensure('absent') }
+              it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
               it { should contain_file('/etc/.git/config') }
               it { should contain_ini_setting('/etc/.git/config user.email') }
               it { should contain_ini_setting('/etc/.git/config user.name') }
@@ -146,6 +162,7 @@ describe 'etckeeper' do
             end
           else
             it { should contain_file('/etc/.bzr').with_ensure('absent') }
+            it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
             it { should contain_file('/etc/.git/config') }
             it { should contain_ini_setting('/etc/.git/config user.email') }
             it { should contain_ini_setting('/etc/.git/config user.name') }
@@ -156,6 +173,7 @@ describe 'etckeeper' do
           end
         when 'RedHat'
           it { should contain_file('/etc/.bzr').with_ensure('absent') }
+          it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
           it { should contain_file('/etc/.git/config') }
           it { should contain_ini_setting('/etc/.git/config user.email') }
           it { should contain_ini_setting('/etc/.git/config user.name') }

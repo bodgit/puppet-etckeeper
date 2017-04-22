@@ -49,6 +49,23 @@ class etckeeper::config {
     }
   }
 
+  $vcs_ignore = {
+    'bzr'   => '/etc/.bzrignore',
+    'darcs' => '/etc/.darcsignore',
+    'git'   => '/etc/.gitignore',
+    'hg'    => '/etc/.hgignore',
+  }
+
+  $vcs_ignore.each |$_vcs,$ignore| {
+
+    if $vcs != $_vcs {
+      file { $ignore:
+        ensure => absent,
+        before => Exec['etckeeper init'],
+      }
+    }
+  }
+
   exec { 'etckeeper init':
     creates => $vcs_to_directory[$vcs],
     path    => $::path,

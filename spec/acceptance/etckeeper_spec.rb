@@ -10,6 +10,10 @@ describe 'etckeeper' do
         vcs_user_email => 'vagrant@example.com',
       }
 
+      ::etckeeper::ignore { '#test':
+        ensure => present,
+      }
+
       if $::osfamily == 'RedHat' {
         include ::epel
 
@@ -46,20 +50,6 @@ describe 'etckeeper' do
     it { should be_mode 700 }
   end
 
-  describe file('/etc/.etckeeper'), :if => fact('osfamily').eql?('RedHat') do
-    it { should be_file }
-    it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
-    it { should be_mode 600 }
-  end
-
-  describe file('/etc/.etckeeper'), :if => fact('osfamily').eql?('Debian') do
-    it { should be_file }
-    it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
-    it { should be_mode 700 }
-  end
-
   describe file('/etc/.git/config'), :unless => (fact('operatingsystem').eql?('Ubuntu') and fact('operatingsystemrelease').eql?('14.04')) do
     it { should be_file }
     it { should be_owned_by 'root' }
@@ -69,8 +59,31 @@ describe 'etckeeper' do
     its(:content) { should match /^ \s* email \s* = \s* vagrant@example\.com $/x }
   end
 
+  describe file('/etc/.gitignore'), :unless => (fact('operatingsystem').eql?('Ubuntu') and fact('operatingsystemrelease').eql?('14.04')) do
+    it { should be_file }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'root' }
+    it { should be_mode 644 }
+    its(:content) { should match /^ \# \s end \s section .+ \r?\n \\\#test $/x }
+  end
+
+  describe file('/etc/.bzrignore'), :if => (fact('operatingsystem').eql?('Ubuntu') and fact('operatingsystemrelease').eql?('14.04')) do
+    it { should be_file }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'root' }
+    it { should be_mode 600 }
+    its(:content) { should match /^ \# \s end \s section .+ \r?\n \#test $/x }
+  end
+
   describe command('etckeeper commit "Initial commit"') do
     its(:exit_status) { should eq 0 }
+  end
+
+  describe file('/etc/.etckeeper') do
+    it { should be_file }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'root' }
+    it { should be_mode 700 }
   end
 
   describe command('cd /etc && git status'), :unless => (fact('operatingsystem').eql?('Ubuntu') and fact('operatingsystemrelease').eql?('14.04')) do
