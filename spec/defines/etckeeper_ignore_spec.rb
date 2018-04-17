@@ -39,7 +39,7 @@ describe 'etckeeper::ignore' do
           else
             it { should contain_file_line('/etc/.gitignore #test').with_line('\#test') }
           end
-        when 'RedHat'
+        else
           it { should contain_file_line('/etc/.gitignore #test').with_line('\#test') }
         end
       end

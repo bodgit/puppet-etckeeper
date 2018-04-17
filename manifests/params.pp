@@ -20,6 +20,11 @@ class etckeeper::params {
       $lowlevel_package_manager  = 'rpm'
       $vcs                       = 'git'
     }
+    'Suse': {
+      $highlevel_package_manager = 'zypper'
+      $lowlevel_package_manager  = 'rpm'
+      $vcs                       = 'git'
+    }
     'Debian': {
       $highlevel_package_manager = 'apt'
       $lowlevel_package_manager  = 'dpkg'
