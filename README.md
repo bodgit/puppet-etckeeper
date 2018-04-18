@@ -78,6 +78,8 @@ The module has been tested on:
 * Ubuntu 14.04/16.04
 * Debian 7/8
 
+It should also work on SLES 11 & 12.
+
 ## Development
 
 The module has both [rspec-puppet](http://rspec-puppet.com) and
