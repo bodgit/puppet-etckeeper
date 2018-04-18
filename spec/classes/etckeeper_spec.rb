@@ -60,7 +60,7 @@ describe 'etckeeper' do
             it { should contain_package('git') }
             it { should_not contain_package('hg') }
           end
-        when 'RedHat'
+        else
           it { should contain_file('/etc/.bzr').with_ensure('absent') }
           it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
           it { should_not contain_package('bzr') }
@@ -110,7 +110,7 @@ describe 'etckeeper' do
             it { should contain_file('/etc/.bzr').with_ensure('absent') }
             it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
           end
-        when 'RedHat'
+        else
           it { should contain_file('/etc/.bzr').with_ensure('absent') }
           it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
         end
@@ -171,7 +171,7 @@ describe 'etckeeper' do
             it { should contain_package('git') }
             it { should_not contain_package('hg') }
           end
-        when 'RedHat'
+        else
           it { should contain_file('/etc/.bzr').with_ensure('absent') }
           it { should contain_file('/etc/.bzrignore').with_ensure('absent') }
           it { should contain_file('/etc/.git/config') }
