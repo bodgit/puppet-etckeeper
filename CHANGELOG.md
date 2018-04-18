@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.2.2](https://github.com/bodgit/puppet-etckeeper/tree/v1.2.2) (2018-04-18)
+[Full Changelog](https://github.com/bodgit/puppet-etckeeper/compare/v1.2.1...v1.2.2)
+
+**Implemented enhancements:**
+
+- Add support for SLES [\#8](https://github.com/bodgit/puppet-etckeeper/pull/8) ([mxey](https://github.com/mxey))
+
 ## [v1.2.1](https://github.com/bodgit/puppet-etckeeper/tree/v1.2.1) (2017-11-06)
 [Full Changelog](https://github.com/bodgit/puppet-etckeeper/compare/v1.2.0...v1.2.1)
 
