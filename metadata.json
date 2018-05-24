@@ -1,6 +1,6 @@
 {
   "name": "bodgit-etckeeper",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "bodgit",
   "summary": "Puppet Module for managing etckeeper",
   "license": "Apache-2.0",
