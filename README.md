@@ -24,7 +24,8 @@ Tested with Travis CI
 This module ensures that etckeeper is set up and configured to keep the `/etc`
 directory under version control.
 
-RHEL/CentOS, Ubuntu and Debian are supported using Puppet 4.4.0 or later.
+RHEL/CentOS, Ubuntu, Debian, SLES and Arch Linux are supported using Puppet
+4.4.0 or later.
 
 ## Setup
 
@@ -78,7 +79,7 @@ The module has been tested on:
 * Ubuntu 14.04/16.04
 * Debian 7/8
 
-It should also work on SLES 11 & 12.
+It should also work on SLES 11 & 12 and Arch Linux.
 
 ## Development
 
