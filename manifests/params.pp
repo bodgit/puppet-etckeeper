@@ -45,6 +45,11 @@ class etckeeper::params {
         }
       }
     }
+    'Archlinux': {
+      $highlevel_package_manager = 'pacman'
+      $lowlevel_package_manager  = 'pacman'
+      $vcs = 'git'
+    }
     default: {
       fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
     }
