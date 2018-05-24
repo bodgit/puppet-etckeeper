@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.2.3](https://github.com/bodgit/puppet-etckeeper/tree/v1.2.3) (2018-05-24)
+[Full Changelog](https://github.com/bodgit/puppet-etckeeper/compare/v1.2.2...v1.2.3)
+
+**Implemented enhancements:**
+
+- Archlinux support [\#9](https://github.com/bodgit/puppet-etckeeper/pull/9) ([Arakmar](https://github.com/Arakmar))
+
 ## [v1.2.2](https://github.com/bodgit/puppet-etckeeper/tree/v1.2.2) (2018-04-18)
 [Full Changelog](https://github.com/bodgit/puppet-etckeeper/compare/v1.2.1...v1.2.2)
 
