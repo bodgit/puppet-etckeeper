@@ -1,7 +1,12 @@
 # @!visibility private
 class etckeeper::install {
 
-  package { $etckeeper::package_name:
+  # if RedHat, need to have EPEL installed
+  if $::osfamily == 'RedHat' {
+    include ::epel
+    Class['::epel'] -> Package[$::etckeeper::package_name]
+  }
+  package { $::etckeeper::package_name:
     ensure => present,
   }
 
