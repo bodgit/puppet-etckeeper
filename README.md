@@ -40,7 +40,8 @@ previous commits.
 
 On RHEL/CentOS platforms you will need to have access to the EPEL repository
 by using [puppet/epel](https://forge.puppet.com/puppet/epel) or by other
-means.
+means.  If using the EPEL repository module, this module will include it by
+default.  To override, set `assume_epel` to True.
 
 ### Beginning with etckeeper
 

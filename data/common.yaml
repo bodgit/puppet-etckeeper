@@ -1,4 +1,5 @@
 ---
+etckeeper::assume_epel: ~
 etckeeper::avoid_commit_before_install: ~
 etckeeper::avoid_daily_autocommits: ~
 etckeeper::avoid_special_file_warning: ~
