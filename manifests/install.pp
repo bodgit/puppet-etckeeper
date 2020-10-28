@@ -2,7 +2,7 @@
 class etckeeper::install {
 
   # if RedHat, need to have EPEL installed
-  if $::osfamily == 'RedHat' {
+  if $::osfamily == 'RedHat' and ! $::etckeeper::assume_epel {
     include ::epel
     Class['::epel'] -> Package[$::etckeeper::package_name]
   }
