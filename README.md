@@ -76,7 +76,7 @@ This module has been built on and tested against Puppet 5 and higher.
 
 The module has been tested on:
 
-* Red Hat/CentOS Enterprise Linux 6/7
+* RedHat Enterprise/CentOS Linux 6/7/8
 * Ubuntu 14.04/16.04
 * Debian 7/8
 
