@@ -40,8 +40,9 @@ previous commits.
 ### Setup Requirements
 
 On RHEL/CentOS platforms you will need to have access to the EPEL repository
-by using [stahnma/epel](https://forge.puppet.com/stahnma/epel) or by other
-means.
+by using [puppet/epel](https://forge.puppet.com/puppet/epel) or by other
+means.  If using the EPEL repository module, this module will include it by
+default.  To override, set `assume_epel` to True.
 
 ### Beginning with etckeeper
 
@@ -75,7 +76,7 @@ This module has been built on and tested against Puppet 4.4.0 and higher.
 
 The module has been tested on:
 
-* RedHat Enterprise Linux 6/7
+* RedHat Enterprise Linux 6/7/8
 * Ubuntu 14.04/16.04
 * Debian 7/8
 

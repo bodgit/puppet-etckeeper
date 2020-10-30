@@ -1,14 +1,14 @@
 # Add a glob pattern for the chosen VCS to ignore.
 #
 # @example Ignoring an example pattern
-#   ::etckeeper::ignore { '*.foo':
+#   etckeeper::ignore { '*.foo':
 #     ensure => present,
 #   }
 #
 # @param ensure
 # @param glob The pattern to ignore.
 #
-# @see puppet_classes::etckeeper ::etckeeper
+# @see puppet_classes::etckeeper etckeeper
 #
 # @since 1.2.0
 define etckeeper::ignore (
@@ -16,7 +16,7 @@ define etckeeper::ignore (
   String[1]                 $glob   = $title,
 ) {
 
-  if ! defined(Class['::etckeeper']) {
+  if ! defined(Class['etckeeper']) {
     fail('You must include the etckeeper base class before using any etckeeper defined resources')
   }
 
@@ -63,6 +63,6 @@ define etckeeper::ignore (
     ensure  => $ensure,
     path    => $vcs_ignore[$vcs],
     line    => $_glob,
-    require => Class['::etckeeper::config'],
+    require => Class['etckeeper::config'],
   }
 }

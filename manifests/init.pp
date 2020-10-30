@@ -1,20 +1,21 @@
 # Installs etckeeper.
 #
 # @example Declaring the class
-#   include ::etckeeper
+#   include etckeeper
 #
 # @example Choosing a specific VCS instead of the default
-#   class { '::etckeeper':
+#   class { 'etckeeper':
 #     vcs => 'bzr',
 #   }
 #
 # @example Forcing the user name & email for commits
-#   class { '::etckeeper':
+#   class { 'etckeeper':
 #     vcs            => 'git',
 #     vcs_user_name  => 'Alice',
 #     vcs_user_email => 'alice@example.com',
 #   }
 #
+# @param assume_epel Assume EPEL repository installed (Red Hat variants only)
 # @param avoid_commit_before_install
 # @param avoid_daily_autocommits
 # @param avoid_special_file_warning
@@ -33,10 +34,11 @@
 # @param vcs_user_email
 # @param vcs_user_name
 #
-# @see puppet_defined_types::etckeeper::ignore ::etckeeper::ignore
+# @see puppet_defined_types::etckeeper::ignore etckeeper::ignore
 #
 # @since 1.0.0
 class etckeeper (
+  Optional[Boolean]                    $assume_epel                 = false,
   Optional[Boolean]                    $avoid_commit_before_install = undef,
   Optional[Boolean]                    $avoid_daily_autocommits     = undef,
   Optional[Boolean]                    $avoid_special_file_warning  = undef,
@@ -54,10 +56,10 @@ class etckeeper (
   Hash[Etckeeper::VCS, String]         $vcs_packages                = $::etckeeper::params::vcs_packages,
   Optional[String[1]]                  $vcs_user_email              = undef,
   Optional[String[1]]                  $vcs_user_name               = undef,
-) inherits ::etckeeper::params {
+) inherits etckeeper::params {
 
-  contain ::etckeeper::install
-  contain ::etckeeper::config
+  contain etckeeper::install
+  contain etckeeper::config
 
-  Class['::etckeeper::install'] -> Class['::etckeeper::config']
+  Class['etckeeper::install'] -> Class['etckeeper::config']
 }
