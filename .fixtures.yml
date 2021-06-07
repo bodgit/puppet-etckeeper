@@ -5,7 +5,7 @@ fixtures:
   forge_modules:
     inifile:
       repo: "puppetlabs/inifile"
-      ref: "2.5.0"
+      ref: "5.0.1"
     stdlib:
       repo: "puppetlabs/stdlib"
-      ref: "4.25.1"
+      ref: "7.1.0"
