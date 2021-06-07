@@ -1,20 +1,20 @@
 # @!visibility private
 class etckeeper::config {
 
-  $avoid_commit_before_install = $::etckeeper::avoid_commit_before_install
-  $avoid_daily_autocommits     = $::etckeeper::avoid_daily_autocommits
-  $avoid_special_file_warning  = $::etckeeper::avoid_special_file_warning
-  $bzr_commit_options          = $::etckeeper::bzr_commit_options
-  $conf_dir                    = $::etckeeper::conf_dir
-  $darcs_commit_options        = $::etckeeper::darcs_commit_options
-  $git_commit_options          = $::etckeeper::git_commit_options
-  $hg_commit_options           = $::etckeeper::hg_commit_options
-  $highlevel_package_manager   = $::etckeeper::highlevel_package_manager
-  $lowlevel_package_manager    = $::etckeeper::lowlevel_package_manager
-  $push_remotes                = $::etckeeper::push_remotes
-  $vcs                         = $::etckeeper::vcs
-  $vcs_user_email              = $::etckeeper::vcs_user_email
-  $vcs_user_name               = $::etckeeper::vcs_user_name
+  $avoid_commit_before_install = $etckeeper::avoid_commit_before_install
+  $avoid_daily_autocommits     = $etckeeper::avoid_daily_autocommits
+  $avoid_special_file_warning  = $etckeeper::avoid_special_file_warning
+  $bzr_commit_options          = $etckeeper::bzr_commit_options
+  $conf_dir                    = $etckeeper::conf_dir
+  $darcs_commit_options        = $etckeeper::darcs_commit_options
+  $git_commit_options          = $etckeeper::git_commit_options
+  $hg_commit_options           = $etckeeper::hg_commit_options
+  $highlevel_package_manager   = $etckeeper::highlevel_package_manager
+  $lowlevel_package_manager    = $etckeeper::lowlevel_package_manager
+  $push_remotes                = $etckeeper::push_remotes
+  $vcs                         = $etckeeper::vcs
+  $vcs_user_email              = $etckeeper::vcs_user_email
+  $vcs_user_name               = $etckeeper::vcs_user_name
 
   file { $conf_dir:
     ensure => directory,
@@ -68,7 +68,7 @@ class etckeeper::config {
 
   exec { 'etckeeper init':
     creates => $vcs_to_directory[$vcs],
-    path    => $::path,
+    path    => $facts['path'],
     require => File["${conf_dir}/etckeeper.conf"],
   }
 
