@@ -1,0 +1,74 @@
+---
+common:
+  disable_legacy_facts: true
+appveyor.yml:
+  delete: true
+.gitlab-ci.yml:
+  delete: true
+.rubocop.yml:
+  default_configs:
+    Layout/HashAlignment:
+      EnforcedHashRocketStyle: table
+      EnforcedColonStyle: table
+  profiles:
+    strict:
+      enabled_cops:
+        Layout/HashAlignment:
+.travis.yml:
+  includes:
+    - env: CHECK="check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop syntax lint metadata_lint"
+      stage: static
+    - env: PUPPET_GEM_VERSION="~> 5.0" CHECK=parallel_spec
+      rvm: 2.4.5
+      stage: spec
+    - env: PUPPET_GEM_VERSION="~> 6.0" CHECK=parallel_spec
+      rvm: 2.5.7
+      stage: spec
+    - env: PUPPET_GEM_VERSION="~> 7.0" CHECK=parallel_spec
+      rvm: 2.7.2
+      stage: spec
+  notifications:
+    email: true
+  secure: 'JsUT1PWYApUAHpgEfcKWxsFRcMCUmuJY/MN4m6CJNDT1skWJN/NE+L8J4OGwJ2ev6RUkSuAl3rLeQOtTeJuBLzH5JqgPvWb3XVo+JizKbs+IuaPk7u8t9dIRBG1nP/8Dfc/IXDGcnr59qJUa0kdDz6Jk7NCf6+ojiDOcqoJOYcRfLSaHO0DerAwOalcTCqQt9BtrCdnC6A5yQCmRE8uwo1AbregwZUEN9TIPgsXvzNChAj0wHdwmVGxgvj0QjlOfAKCxvY7/iwS3RU0gpBihtZRhYuo0yKDrShpenpKkbWP6pbYvnaQSniqTE0NdR9CUcx0XQ3uu8PgZYV0F/QcBrksE3t1IhlyLGZVCxkdq6R7O4//9syp4/BOsRoFLzGJgnxblHgQFdmTG5Nz3CMv8hoSWXVrUaX4AGO3Z57HE7ExFIf7qCim0+3ytXyb6/bG5G+3yqkNK5TOvy2WmJzx826e1UwlH7u0mu85CYI8VMBLIkoPHA2D+lsSUSy5cD/1zvZjpVBcjpYOWN4tByboHj/ZDS7teFpgLWVQu7+cu3Mker5ybyFrbDnH1ZdsDqGHJyPNyRiqiKqZ4axSSz0mTdYSs2tfxhwqlDJxDwG765om8OSoGneKEjlQI21H7mOy23KDJWZdEVj0zuD8RQKKVEnlUEhnIxFf7jVzFiVS8kQo='
+  simplecov: true
+  user: 'bodgit'
+.vscode/extensions.json:
+  delete: true
+.devcontainer/Dockerfile:
+  delete: true
+.devcontainer/devcontainer.json:
+  delete: true
+Gemfile:
+  required:
+    ':development':
+      - gem: 'puppet-lint-absolute_classname-check'
+      - gem: 'puppet-lint-alias-check'
+      - gem: 'puppet-lint-empty_string-check'
+      - gem: 'puppet-lint-file_ensure-check'
+      - gem: 'puppet-lint-file_source_rights-check'
+      - gem: 'puppet-lint-fileserver-check'
+        git: 'https://github.com/bodgit/puppet-lint-fileserver-check.git'
+        branch: 'puppet-lint-2.x'
+      - gem: 'puppet-lint-leading_zero-check'
+      - gem: 'puppet-lint-spaceship_operator_without_tag-check'
+      - gem: 'puppet-lint-trailing_comma-check'
+      - gem: 'puppet-lint-undef_in_function-check'
+      - gem: 'puppet-lint-unquoted_string-check'
+      - gem: 'puppet-lint-variable_contains_upcase'
+      - gem: 'puppet-lint-version_comparison-check'
+  optional:
+    ':development':
+      - gem: 'github_changelog_generator'
+        version: '~> 1.15'
+        condition: "Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.3.0')"
+    ':system_tests':
+      - gem: 'beaker-vagrant'
+      - gem: 'beaker-rspec'
+      - gem: 'beaker-puppet_install_helper'
+      - gem: 'beaker-module_install_helper'
+Rakefile:
+  linter_fail_on_warnings: true
+spec/spec_helper.rb:
+  mock_with: ':rspec'
+  coverage_report: true
+  minimum_code_coverage_percentage: 100

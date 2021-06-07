@@ -2,3 +2,10 @@ fixtures:
   symlinks:
     etckeeper: "#{source_dir}"
     test: "#{source_dir}/spec/fixtures/test"
+  forge_modules:
+    inifile:
+      repo: "puppetlabs/inifile"
+      ref: "2.5.0"
+    stdlib:
+      repo: "puppetlabs/stdlib"
+      ref: "4.25.1"
