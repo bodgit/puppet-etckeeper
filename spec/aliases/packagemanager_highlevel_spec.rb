@@ -8,7 +8,8 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0
         'yum',
       ].each do |value|
         describe value.inspect do
-          let(:params) {{ value: value }}
+          let(:params) { { value: value } }
+
           it { is_expected.to compile }
         end
       end
@@ -20,8 +21,9 @@ if Puppet::Util::Package.versioncmp(Puppet.version, '4.4.0') >= 0
         ['yum'],
       ].each do |value|
         describe value.inspect do
-          let(:params) {{ value: value }}
-          it {is_expected.to compile.and_raise_error(/parameter 'value' /) }
+          let(:params) { { value: value } }
+
+          it { is_expected.to compile.and_raise_error(%r{parameter 'value' }) }
         end
       end
     end

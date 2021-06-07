@@ -7,7 +7,7 @@ describe 'etckeeper::ignore' do
 
   let(:params) do
     {
-      :ensure => 'present',
+      ensure: 'present',
     }
   end
 
@@ -18,29 +18,20 @@ describe 'etckeeper::ignore' do
       end
 
       context 'without etckeeper class included' do
-        it { expect { should compile }.to raise_error(/must include the etckeeper base class/) }
+        it { expect { is_expected.to compile }.to raise_error(%r{must include the etckeeper base class}) }
       end
 
-      context 'with etckeeper class included', :compile do
+      context 'with etckeeper class included' do
         let(:pre_condition) do
           'include ::etckeeper'
         end
 
-        case facts[:osfamily]
-        when 'Debian'
-          case facts[:operatingsystem]
-          when 'Ubuntu'
-            case facts[:operatingsystemrelease]
-            when '14.04'
-              it { should contain_file_line('/etc/.bzrignore #test').with_line('#test') }
-            else
-              it { should contain_file_line('/etc/.gitignore #test').with_line('\#test') }
-            end
-          else
-            it { should contain_file_line('/etc/.gitignore #test').with_line('\#test') }
-          end
+        it { is_expected.to compile.with_all_deps }
+
+        if facts[:operatingsystem].eql?('Ubuntu') && facts[:operatingsystemrelease].eql?('14.04')
+          it { is_expected.to contain_file_line('/etc/.bzrignore #test').with_line('#test') }
         else
-          it { should contain_file_line('/etc/.gitignore #test').with_line('\#test') }
+          it { is_expected.to contain_file_line('/etc/.gitignore #test').with_line('\#test') }
         end
       end
     end
