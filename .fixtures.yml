@@ -1,7 +1,6 @@
 fixtures:
   symlinks:
     etckeeper: "#{source_dir}"
-    test: "#{source_dir}/spec/fixtures/test"
   forge_modules:
     inifile:
       repo: "puppetlabs/inifile"
