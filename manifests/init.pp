@@ -37,24 +37,24 @@
 #
 # @since 1.0.0
 class etckeeper (
-  Optional[Boolean]                    $avoid_commit_before_install = undef,
-  Optional[Boolean]                    $avoid_daily_autocommits     = undef,
-  Optional[Boolean]                    $avoid_special_file_warning  = undef,
-  Optional[String]                     $bzr_commit_options          = $etckeeper::params::bzr_commit_options,
-  Stdlib::Absolutepath                 $conf_dir                    = $etckeeper::params::conf_dir,
-  Optional[String]                     $darcs_commit_options        = $etckeeper::params::darcs_commit_options,
-  Optional[String]                     $git_commit_options          = $etckeeper::params::git_commit_options,
-  Optional[String]                     $hg_commit_options           = $etckeeper::params::hg_commit_options,
-  Etckeeper::PackageManager::HighLevel $highlevel_package_manager   = $etckeeper::params::highlevel_package_manager,
-  Etckeeper::PackageManager::LowLevel  $lowlevel_package_manager    = $etckeeper::params::lowlevel_package_manager,
-  Boolean                              $manage_vcs_package          = true,
-  String                               $package_name                = $etckeeper::params::package_name,
-  Optional[Array[String, 1]]           $push_remotes                = undef,
-  Etckeeper::VCS                       $vcs                         = $etckeeper::params::vcs,
-  Hash[Etckeeper::VCS, String]         $vcs_packages                = $etckeeper::params::vcs_packages,
-  Optional[String[1]]                  $vcs_user_email              = undef,
-  Optional[String[1]]                  $vcs_user_name               = undef,
-) inherits etckeeper::params {
+  Optional[Boolean]                    $avoid_commit_before_install,
+  Optional[Boolean]                    $avoid_daily_autocommits,
+  Optional[Boolean]                    $avoid_special_file_warning,
+  Optional[String]                     $bzr_commit_options,
+  Stdlib::Absolutepath                 $conf_dir,
+  Optional[String]                     $darcs_commit_options,
+  Optional[String]                     $git_commit_options,
+  Optional[String]                     $hg_commit_options,
+  Etckeeper::PackageManager::HighLevel $highlevel_package_manager,
+  Etckeeper::PackageManager::LowLevel  $lowlevel_package_manager,
+  Boolean                              $manage_vcs_package,
+  String                               $package_name,
+  Optional[Array[String, 1]]           $push_remotes,
+  Etckeeper::VCS                       $vcs,
+  Hash[Etckeeper::VCS, String]         $vcs_packages,
+  Optional[String[1]]                  $vcs_user_email,
+  Optional[String[1]]                  $vcs_user_name,
+) {
 
   contain etckeeper::install
   contain etckeeper::config

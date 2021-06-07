@@ -18,7 +18,7 @@ describe 'etckeeper::ignore' do
       end
 
       context 'without etckeeper class included' do
-        it { expect { is_expected.to compile }.to raise_error(%r{must include the etckeeper base class}) }
+        it { is_expected.to compile.and_raise_error(%r{must include the etckeeper base class}) }
       end
 
       context 'with etckeeper class included' do
