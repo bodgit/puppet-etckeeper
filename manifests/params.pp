@@ -14,7 +14,7 @@ class etckeeper::params {
     'hg'    => 'mercurial',
   }
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
       $highlevel_package_manager = 'yum'
       $lowlevel_package_manager  = 'rpm'
@@ -29,9 +29,9 @@ class etckeeper::params {
       $highlevel_package_manager = 'apt'
       $lowlevel_package_manager  = 'dpkg'
 
-      case $::operatingsystem {
+      case $facts['os']['name'] {
         'Ubuntu': {
-          case $::operatingsystemrelease {
+          case $facts['os']['release']['full'] {
             '14.04': {
               $vcs = 'bzr'
             }
@@ -51,7 +51,7 @@ class etckeeper::params {
       $vcs                       = 'git'
     }
     default: {
-      fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
+      fail("The ${module_name} module is not supported on an ${facts['os']['family']} based system.")
     }
   }
 }

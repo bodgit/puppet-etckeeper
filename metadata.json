@@ -7,6 +7,16 @@
   "source": "https://github.com/bodgit/puppet-etckeeper",
   "project_page": "https://github.com/bodgit/puppet-etckeeper",
   "issues_url": "https://github.com/bodgit/puppet-etckeeper/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=4.13.0 <5.0.0"
+    },
+    {
+      "name": "puppetlabs/inifile",
+      "version_requirement": ">=1.6.0 <3.0.0"
+    }
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -70,14 +80,7 @@
   "tags": [
     "etckeeper"
   ],
-  "dependencies": [
-    {
-      "name": "puppetlabs/stdlib",
-      "version_requirement": ">=4.13.0 <5.0.0"
-    },
-    {
-      "name": "puppetlabs/inifile",
-      "version_requirement": ">=1.6.0 <3.0.0"
-    }
-  ]
+  "pdk-version": "2.1.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#2.1.0",
+  "template-ref": "tags/2.1.0-0-ga675ea5"
 }
