@@ -6,15 +6,15 @@
 <title>
   Defined Type: etckeeper::ignore
   
-    &mdash; Documentation by YARD 0.9.12
+    &mdash; Documentation by YARD 0.9.26
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "puppet_defined_types::etckeeper::ignore";
   relpath = '../';
 </script>
@@ -77,6 +77,8 @@
 
   </div>
 </div>
+
+
 <div class="tags">
   
   <div class="examples">
@@ -87,7 +89,7 @@
 <p>Ignoring an example pattern</p>
 </div></p>
       
-      <pre class="example code"><code>::etckeeper::ignore { &#39;*.foo&#39;:
+      <pre class="example code"><code>etckeeper::ignore { &#39;*.foo&#39;:
   ensure =&gt; present,
 }</code></pre>
     
@@ -129,10 +131,11 @@
 </ul>
 
 
+
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
-      <li><span class='object_link'><a href="../puppet_classes/etckeeper.html" title="puppet_classes::etckeeper (puppet_class)">::etckeeper</a></span></li>
+      <li><span class='object_link'><a href="../puppet_classes/etckeeper.html" title="puppet_classes::etckeeper (puppet_class)">etckeeper</a></span></li>
     
   </ul>
 <p class="tag_title">Since:</p>
@@ -223,11 +226,11 @@ define etckeeper::ignore (
   String[1]                 $glob   = $title,
 ) {
 
-  if ! defined(Class[&#39;::etckeeper&#39;]) {
+  if ! defined(Class[&#39;etckeeper&#39;]) {
     fail(&#39;You must include the etckeeper base class before using any etckeeper defined resources&#39;)
   }
 
-  $vcs = $::etckeeper::vcs
+  $vcs = $etckeeper::vcs
 
   case $vcs {
     &#39;darcs&#39;: {
@@ -270,7 +273,7 @@ define etckeeper::ignore (
     ensure  =&gt; $ensure,
     path    =&gt; $vcs_ignore[$vcs],
     line    =&gt; $_glob,
-    require =&gt; Class[&#39;::etckeeper::config&#39;],
+    require =&gt; Class[&#39;etckeeper::config&#39;],
   }
 }</pre>
       </td>

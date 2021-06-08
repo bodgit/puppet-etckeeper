@@ -6,15 +6,15 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.12
+    &mdash; Documentation by YARD 0.9.26
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "";
   relpath = '';
 </script>
@@ -60,17 +60,16 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-etckeeper">etckeeper</h1>
 
-<p>Tested with Travis CI</p>
-
-<p><a href="https://travis-ci.org/bodgit/puppet-etckeeper"><img
-src="https://travis-ci.org/bodgit/puppet-etckeeper.svg?branch=master"></a>
-<a
-href="https://coveralls.io/github/bodgit/puppet-etckeeper?branch=master"><img
-src="https://coveralls.io/repos/bodgit/puppet-etckeeper/badge.svg?branch=master&service=github"></a>
+<p><a href="https://travis-ci.com/bodgit/puppet-etckeeper"><img
+src="https://travis-ci.com/bodgit/puppet-etckeeper.svg?branch=main"></a> <a
+href="https://codecov.io/gh/bodgit/puppet-etckeeper"><img
+src="https://img.shields.io/codecov/c/github/bodgit/puppet-etckeeper"></a>
 <a href="https://forge.puppetlabs.com/bodgit/etckeeper"><img
-src="http://img.shields.io/puppetforge/v/bodgit/etckeeper.svg"></a> <a
-href="https://gemnasium.com/bodgit/puppet-etckeeper"><img
-src="https://gemnasium.com/bodgit/puppet-etckeeper.svg"></a></p>
+src="http://img.shields.io/puppetforge/v/bodgit/etckeeper"></a> <a
+href="https://forge.puppetlabs.com/bodgit/etckeeper"><img
+src="https://img.shields.io/puppetforge/dt/bodgit/etckeeper"></a> <a
+href="https://forge.puppetlabs.com/bodgit/etckeeper"><img
+src="https://img.shields.io/puppetforge/pdk-version/bodgit/etckeeper"></a></p>
 
 <h4 id="label-Table+of+Contents">Table of Contents</h4>
 <ol><li>
@@ -103,7 +102,7 @@ module</a></p>
 <code>/etc</code> directory under version control.</p>
 
 <p>RHEL/CentOS, Ubuntu, Debian, SLES and Arch Linux are supported using Puppet
-4.4.0 or later.</p>
+5 or later.</p>
 
 <h2 id="label-Setup">Setup</h2>
 
@@ -119,21 +118,22 @@ also means that if you change VCS you will lose any previous commits.</p>
 
 <p>On RHEL/CentOS platforms you will need to have access to the EPEL
 repository by using <a
-href="https://forge.puppet.com/stahnma/epel">stahnma/epel</a> or by other
+href="https://forge.puppet.com/puppet/epel">puppet/epel</a> or by other
 means.</p>
 
 <h3 id="label-Beginning+with+etckeeper">Beginning with etckeeper</h3>
 
 <p>In the very simplest case, you can just include the following:</p>
 
-<pre class="code ruby"><code class="ruby">include ::etckeeper</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_etckeeper'>etckeeper</span>
+</code></pre>
 
 <h2 id="label-Usage">Usage</h2>
 
 <p>For example to configure etckeeper to use a specific VCS instead of going
 with the default:</p>
 
-<pre class="code ruby"><code class="ruby">class { &#39;::etckeeper&#39;:
+<pre class="code ruby"><code class="ruby">class { &#39;etckeeper&#39;:
   vcs =&gt; &#39;bzr&#39;,
 }</code></pre>
 
@@ -142,15 +142,17 @@ with the default:</p>
 <p>The reference documentation is generated with <a
 href="https://github.com/puppetlabs/puppet-strings">puppet-strings</a> and
 the latest version of the documentation is hosted at <a
-href="https://bodgit.github.io/puppet-etckeeper/">bodgit.github.io/puppet-etckeeper/</a>.</p>
+href="https://bodgit.github.io/puppet-etckeeper/">bodgit.github.io/puppet-etckeeper/</a>
+and available also in the <a
+href="https://github.com/bodgit/puppet-etckeeper/blob/main/REFERENCE.md">REFERENCE.md</a>.</p>
 
 <h2 id="label-Limitations">Limitations</h2>
 
-<p>This module has been built on and tested against Puppet 4.4.0 and higher.</p>
+<p>This module has been built on and tested against Puppet 5 and higher.</p>
 
 <p>The module has been tested on:</p>
 <ul><li>
-<p>RedHat Enterprise Linux 6/7</p>
+<p>Red Hat/CentOS Enterprise Linux 6/7</p>
 </li><li>
 <p>Ubuntu 14.04/16.04</p>
 </li><li>
@@ -161,11 +163,13 @@ href="https://bodgit.github.io/puppet-etckeeper/">bodgit.github.io/puppet-etckee
 
 <h2 id="label-Development">Development</h2>
 
-<p>The module has both <a href="http://rspec-puppet.com">rspec-puppet</a> and
-<a href="https://github.com/puppetlabs/beaker-rspec">beaker-rspec</a>
-tests. Run them with:</p>
+<p>The module relies on <a
+href="https://puppet.com/docs/pdk/1.x/pdk.html">PDK</a> and has both <a
+href="http://rspec-puppet.com">rspec-puppet</a> and <a
+href="https://github.com/puppetlabs/beaker-rspec">beaker-rspec</a> tests.
+Run them with:</p>
 
-<pre class="code ruby"><code class="ruby">$ bundle exec rake test
+<pre class="code ruby"><code class="ruby">$ bundle exec rake spec
 $ PUPPET_INSTALL_TYPE=agent PUPPET_INSTALL_VERSION=x.y.z bundle exec rake beaker:&lt;nodeset&gt;</code></pre>
 
 <p>Please log issues or pull requests at <a
