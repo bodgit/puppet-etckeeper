@@ -1,11 +1,10 @@
 # etckeeper
 
-Tested with Travis CI
-
-[![Build Status](https://travis-ci.org/bodgit/puppet-etckeeper.svg?branch=master)](https://travis-ci.org/bodgit/puppet-etckeeper)
-[![Coverage Status](https://coveralls.io/repos/bodgit/puppet-etckeeper/badge.svg?branch=master&service=github)](https://coveralls.io/github/bodgit/puppet-etckeeper?branch=master)
-[![Puppet Forge](http://img.shields.io/puppetforge/v/bodgit/etckeeper.svg)](https://forge.puppetlabs.com/bodgit/etckeeper)
-[![Dependency Status](https://gemnasium.com/bodgit/puppet-etckeeper.svg)](https://gemnasium.com/bodgit/puppet-etckeeper)
+[![Build Status](https://travis-ci.com/bodgit/puppet-etckeeper.svg?branch=main)](https://travis-ci.com/bodgit/puppet-etckeeper)
+[![Codecov](https://img.shields.io/codecov/c/github/bodgit/puppet-etckeeper)](https://codecov.io/gh/bodgit/puppet-etckeeper)
+[![Puppet Forge version](http://img.shields.io/puppetforge/v/bodgit/etckeeper)](https://forge.puppetlabs.com/bodgit/etckeeper)
+[![Puppet Forge downloads](https://img.shields.io/puppetforge/dt/bodgit/etckeeper)](https://forge.puppetlabs.com/bodgit/etckeeper)
+[![Puppet Forge - PDK version](https://img.shields.io/puppetforge/pdk-version/bodgit/etckeeper)](https://forge.puppetlabs.com/bodgit/etckeeper)
 
 #### Table of Contents
 
@@ -25,7 +24,7 @@ This module ensures that etckeeper is set up and configured to keep the `/etc`
 directory under version control.
 
 RHEL/CentOS, Ubuntu, Debian, SLES and Arch Linux are supported using Puppet
-4.4.0 or later.
+5 or later.
 
 ## Setup
 
@@ -40,7 +39,7 @@ previous commits.
 ### Setup Requirements
 
 On RHEL/CentOS platforms you will need to have access to the EPEL repository
-by using [stahnma/epel](https://forge.puppet.com/stahnma/epel) or by other
+by using [puppet/epel](https://forge.puppet.com/puppet/epel) or by other
 means.
 
 ### Beginning with etckeeper
@@ -48,7 +47,7 @@ means.
 In the very simplest case, you can just include the following:
 
 ```puppet
-include ::etckeeper
+include etckeeper
 ```
 
 ## Usage
@@ -57,7 +56,7 @@ For example to configure etckeeper to use a specific VCS instead of going with
 the default:
 
 ```puppet
-class { '::etckeeper':
+class { 'etckeeper':
   vcs => 'bzr',
 }
 ```
@@ -67,15 +66,16 @@ class { '::etckeeper':
 The reference documentation is generated with
 [puppet-strings](https://github.com/puppetlabs/puppet-strings) and the latest
 version of the documentation is hosted at
-[https://bodgit.github.io/puppet-etckeeper/](https://bodgit.github.io/puppet-etckeeper/).
+[https://bodgit.github.io/puppet-etckeeper/](https://bodgit.github.io/puppet-etckeeper/)
+and available also in the [REFERENCE.md](https://github.com/bodgit/puppet-etckeeper/blob/main/REFERENCE.md).
 
 ## Limitations
 
-This module has been built on and tested against Puppet 4.4.0 and higher.
+This module has been built on and tested against Puppet 5 and higher.
 
 The module has been tested on:
 
-* RedHat Enterprise Linux 6/7
+* Red Hat/CentOS Enterprise Linux 6/7
 * Ubuntu 14.04/16.04
 * Debian 7/8
 
@@ -83,12 +83,13 @@ It should also work on SLES 11 & 12 and Arch Linux.
 
 ## Development
 
-The module has both [rspec-puppet](http://rspec-puppet.com) and
+The module relies on [PDK](https://puppet.com/docs/pdk/1.x/pdk.html) and has
+both [rspec-puppet](http://rspec-puppet.com) and
 [beaker-rspec](https://github.com/puppetlabs/beaker-rspec) tests. Run them
 with:
 
 ```
-$ bundle exec rake test
+$ bundle exec rake spec
 $ PUPPET_INSTALL_TYPE=agent PUPPET_INSTALL_VERSION=x.y.z bundle exec rake beaker:<nodeset>
 ```
 
