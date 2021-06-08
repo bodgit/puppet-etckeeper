@@ -1,0 +1,73 @@
+---
+name: test
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v[0-9]*'
+  pull_request:
+    branches:
+      - main
+jobs:
+  static:
+    name: Static tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Activate Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+      - name: Run static & syntax tests
+        run: bundle exec rake check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop syntax lint metadata_lint
+  spec:
+    name: 'Spec tests (Puppet: ${{ matrix.puppet_gem_version }}, Ruby: ${{ matrix.ruby }})'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ruby: 2.4.5
+            puppet_gem_version: ~> 5.0
+          - ruby: 2.5.7
+            puppet_gem_version: ~> 6.0
+          - ruby: 2.7.2
+            puppet_gem_version: ~> 7.0
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Activate Ruby
+        uses: ruby/setup-ruby@v1
+        env:
+          PUPPET_GEM_VERSION: ${{ matrix.puppet_gem_version }}
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run parallel_spec tests
+        run: bundle exec rake parallel_spec
+        env:
+          SIMPLECOV: yes
+  deploy:
+    name: Deploy to Forge
+    needs:
+      - static
+      - spec
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+          clean: true
+      - name: PDK build
+        uses: docker://puppet/pdk:nightly
+        with:
+          args: build
+      - name: Push to Forge
+        uses: docker://puppet/pdk:nightly
+        with:
+          args: release publish --forge-token ${{ secrets.FORGE_API_KEY }} --force
