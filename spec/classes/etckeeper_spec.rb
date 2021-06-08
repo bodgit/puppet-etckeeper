@@ -1,18 +1,6 @@
 require 'spec_helper'
 
 describe 'etckeeper' do
-  context 'on unsupported distributions' do
-    let(:facts) do
-      {
-        os: {
-          family: 'Unsupported',
-        },
-      }
-    end
-
-    it { expect { is_expected.to compile }.to raise_error(%r{not supported on an Unsupported}) }
-  end
-
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
@@ -25,7 +13,6 @@ describe 'etckeeper' do
         it { is_expected.to contain_class('etckeeper') }
         it { is_expected.to contain_class('etckeeper::config') }
         it { is_expected.to contain_class('etckeeper::install') }
-        it { is_expected.to contain_class('etckeeper::params') }
         it { is_expected.to contain_exec('etckeeper init') }
         it { is_expected.to contain_file('/etc/_darcs').with_ensure('absent') }
         it { is_expected.to contain_file('/etc/.darcsignore').with_ensure('absent') }
@@ -63,7 +50,6 @@ describe 'etckeeper' do
         it { is_expected.to contain_class('etckeeper') }
         it { is_expected.to contain_class('etckeeper::config') }
         it { is_expected.to contain_class('etckeeper::install') }
-        it { is_expected.to contain_class('etckeeper::params') }
         it { is_expected.to contain_exec('etckeeper init') }
         it { is_expected.to contain_file('/etc/_darcs').with_ensure('absent') }
         it { is_expected.to contain_file('/etc/.darcsignore').with_ensure('absent') }
@@ -99,7 +85,6 @@ describe 'etckeeper' do
         it { is_expected.to contain_class('etckeeper') }
         it { is_expected.to contain_class('etckeeper::config') }
         it { is_expected.to contain_class('etckeeper::install') }
-        it { is_expected.to contain_class('etckeeper::params') }
         it { is_expected.to contain_exec('etckeeper init') }
         it { is_expected.to contain_file('/etc/_darcs').with_ensure('absent') }
         it { is_expected.to contain_file('/etc/.darcsignore').with_ensure('absent') }

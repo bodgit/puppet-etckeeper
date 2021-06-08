@@ -1,0 +1,3 @@
+---
+etckeeper::highlevel_package_manager: 'yum'
+etckeeper::lowlevel_package_manager: 'rpm'
