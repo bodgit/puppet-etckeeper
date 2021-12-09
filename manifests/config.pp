@@ -1,6 +1,7 @@
 # @!visibility private
 class etckeeper::config {
 
+  $assume_epel                 = $etckeeper::assume_epel
   $avoid_commit_before_install = $etckeeper::avoid_commit_before_install
   $avoid_daily_autocommits     = $etckeeper::avoid_daily_autocommits
   $avoid_special_file_warning  = $etckeeper::avoid_special_file_warning

@@ -15,6 +15,7 @@
 #     vcs_user_email => 'alice@example.com',
 #   }
 #
+# @param assume_epel Assume EPEL repository installed (Red Hat variants only)
 # @param avoid_commit_before_install
 # @param avoid_daily_autocommits
 # @param avoid_special_file_warning
@@ -37,6 +38,7 @@
 #
 # @since 1.0.0
 class etckeeper (
+  Optional[Boolean]                    $assume_epel,
   Optional[Boolean]                    $avoid_commit_before_install,
   Optional[Boolean]                    $avoid_daily_autocommits,
   Optional[Boolean]                    $avoid_special_file_warning,

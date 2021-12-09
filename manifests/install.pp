@@ -1,7 +1,16 @@
 # @!visibility private
 class etckeeper::install {
 
-  package { $etckeeper::package_name:
+  # if RedHat, need to have EPEL installed
+  if $::osfamily == 'RedHat' and ! $::etckeeper::assume_epel {
+    if defined(Class['epel']) {
+      Class['epel'] -> Package[$::etckeeper::package_name]
+    }
+    else {
+      warning("Without EPEL repository configured, I probably won't be able to find package ${::etckeeper::package_name}.  See \$assume_epel for more information.")
+    }
+  }
+  package { $::etckeeper::package_name:
     ensure => present,
   }
 
