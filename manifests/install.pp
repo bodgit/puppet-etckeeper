@@ -6,7 +6,7 @@ class etckeeper::install {
   }
 
   if $etckeeper::manage_vcs_package {
-    if has_key($etckeeper::vcs_packages, $etckeeper::vcs) {
+    if $etckeeper::vcs in $etckeeper::vcs_packages {
       package { $etckeeper::vcs_packages[$etckeeper::vcs]:
         ensure  => present,
         require => Package[$etckeeper::package_name],
